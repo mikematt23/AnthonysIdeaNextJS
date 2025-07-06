@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { store, persistor } from '../store/store'
 import NavBar from "@/components/UI/NavBar";
+import Card from "@/components/UI/Card";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,9 @@ export default function Providers({ children }: Props) {
         <NavBar/>
         </>
           <div className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center items-center pt-20`}>
-          {children}
+            <Card>
+              {children}
+            </Card>
         </div>
       </PersistGate>
     </Provider>
