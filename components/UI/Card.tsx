@@ -6,7 +6,7 @@ interface CardInterface {
 
 const Card = ({children}:CardInterface)=>{
   return(
-    <div className="bg-gray-100 w-3/4 h-[45rem] rounded-lg flex justify-center pt-5">
+    <div className="bg-gray-100 w-3/4 h-[40rem] md:h-[45rem] rounded-lg">
       {children}
     </div>
   )

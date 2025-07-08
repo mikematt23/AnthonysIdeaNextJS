@@ -17,9 +17,15 @@ const rootReducer = combineReducers({
   user: userReducer
 })
 
+const noopStorage = {
+  getItem: (_key: string) => Promise.resolve(null),
+  setItem: (_key: string, value: string) => Promise.resolve(),
+  removeItem: (_key: string) => Promise.resolve(),
+}
+
 const presistConfig = {
     key:'root',
-    storage,
+    storage : typeof window !== 'undefined' ? storage : noopStorage,
     whitelist:["user"]//put slice in here you want to save on reloads or rerenders
 }
 

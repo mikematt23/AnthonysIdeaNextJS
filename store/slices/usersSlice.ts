@@ -5,15 +5,17 @@ interface UserState {
 }
 
 const initialState = {
-    isLoggedIn : false
+    isLoggedIn : false,
+    user: 0
 }
 
 const userSlice = createSlice({
     name:"user",
     initialState,
     reducers:{
-        logIn(state){
+        logIn(state,action){
             state.isLoggedIn = true
+            state.user = action.payload.user
         },
         logOut(state){
             state.isLoggedIn = false

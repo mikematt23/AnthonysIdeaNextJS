@@ -4,10 +4,10 @@ const NavBar = ()=>{
   return (
     <nav className="bg-yellow-200 p-3 mt-5 flex justify-evenly">
         <Link href="/">
-          Home
+         About
         </Link>
-        <Link href="/about">
-          about
+        <Link href="/login">
+          Login
         </Link>
     </nav>
   )
