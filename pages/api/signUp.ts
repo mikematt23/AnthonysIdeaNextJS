@@ -15,8 +15,7 @@ export default async function handler(req: NextApiRequest,res:NextApiResponse){
             }
         })
         if(user != null){
-            res.json({message:"Already A user"})
-            throw new Error("user found")
+            return res.status(400).json({message:"Already A user"})
         }
         const hashedPassword = await bcrypt.hash(password, 10)
         const createdUser = await prisma.user.create({
@@ -31,6 +30,6 @@ export default async function handler(req: NextApiRequest,res:NextApiResponse){
         return res.status(200).json({message: createdUser})
     }catch(err){
        console.log(err)
-       return res.status(400).json({message:"Already A user"})
+       return res.status(400).json({message:"Error"})
     }
 }
