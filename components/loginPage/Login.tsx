@@ -42,7 +42,7 @@ const Login = ()=>{
 
   return(
     <>
-    <form onSubmit={handleSubmit} className="pt-4 flex flex-col items-center justify-center w-full  h-[15rem]">
+    <form onSubmit={handleSubmit} className="pt-4 flex flex-col items-center justify-center w-full  h-[30rem]">
       <div className=" flex flex-col md:items-center items-start w-full">
         <label className="w-3/4 flex items-start" htmlFor="userName"><span>User Name</span></label>
         <Input id="userName" name="userName" placeholder="User Name" type="text" ref={userName}/>

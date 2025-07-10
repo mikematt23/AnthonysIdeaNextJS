@@ -1,12 +1,23 @@
 'use client'
 import ButtonTab from "@/components/loginPage/ButtonTab"
-import { useState} from "react"
+import { useState, useEffect} from "react"
 import Login from "@/components/loginPage/Login"
 import SignUp from "@/components/loginPage/SignUp"
+import { useSelector } from "react-redux"
+import { RootState } from "@/store/store";
+import { useRouter } from "next/navigation";
 
 const LoginPage = ()=>{
   //state
-    const [loginActive,setLoginActive] = useState(true)
+    const isLoggedIn = useSelector((state:RootState)=> state.user.isLoggedIn)
+    const router = useRouter()
+    useEffect(()=>{
+      if(isLoggedIn){
+        router.push("/profile")
+      }
+    },[isLoggedIn])
+
+  const [loginActive,setLoginActive] = useState(true)
   const [signUpActive, setSignUpActive] = useState(false)
 
   const handleActiveTab = ()=>{
