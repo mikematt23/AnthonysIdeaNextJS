@@ -2,23 +2,35 @@
 import React, {useRef} from "react"
 import Input from "../UI/Input"
 import SubmitButton from "../UI/SubmitButton"
+import { User } from "@prisma/client"
 
 interface PasswordChange{
-    handleClose: ()=> void
+    handleClose: ()=> void,
+    handleChange: (user:User)=> void
 }
 
 
 
-const ChangePassword = ({handleClose}:PasswordChange)=>{
+const ChangePassword = ({handleClose,handleChange}:PasswordChange)=>{
    const password = useRef<HTMLInputElement>(null)
    const newPassword = useRef<HTMLInputElement>(null)
    const confirmNewPassword = useRef<HTMLInputElement>(null)
 
    async function handleSubmit(e:React.FormEvent){
       e.preventDefault()
-
-      
+      const response = await fetch("/api/changePassword",{
+        method:"POST",
+        headers:{
+          "Content-type":"application/json"
+        },
+        body: JSON.stringify({
+          password: password.current?.value,
+          updatedPassword: newPassword.current?.value
+        })
+      })
+      const data = await response.json()
       handleClose()
+      handleChange(data.message)
    }
    return(
     <>

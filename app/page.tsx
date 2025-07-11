@@ -20,7 +20,7 @@ export default function Home() {
     if(isLoggedIn){
       router.push("/profile")
     }
-  },[isLoggedIn])
+  },[])
   return (
       <main className="pt-3">
         <div className="flex pl-4">

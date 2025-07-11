@@ -2,21 +2,35 @@
 import React, {useRef} from "react"
 import Input from "../UI/Input"
 import SubmitButton from "../UI/SubmitButton"
+import { User } from "@prisma/client"
 
 interface AddressChange {
-    handleClose: ()=> void
+    handleClose: ()=> void,
+    handleChange: (user:User)=>void
 }
 
-const ChangeAddress = ({handleClose}:AddressChange)=>{
+const ChangeAddress = ({handleClose, handleChange}:AddressChange)=>{
   const address = useRef<HTMLInputElement>(null)
   const city = useRef<HTMLInputElement>(null)
   const state = useRef<HTMLInputElement>(null)
 
   async function handleSubmit (e:React.FormEvent){
     e.preventDefault()
-
-
+    
+    const response = await fetch("/api/changeAddress",{
+      method: "POST",
+      headers:{
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({
+        city: city.current?.value,
+        address:address.current?.value,
+        state:state.current?.value
+      })
+    })
+    const data = await response.json()
     handleClose()
+    handleChange(data.message)
   }
 
   return(

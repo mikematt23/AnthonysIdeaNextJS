@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest,res:NextApiResponse){
         return res.status(405).end(`Method ${req.method} not allowed`)
     }
     try{
-        const {email,password,address,city,state, fullName} = req.body
+        const {email,password,address,city,state, fullName, phone} = req.body
         const user = await prisma.user.findUnique({
            where:{
                email: email
@@ -28,7 +28,8 @@ export default async function handler(req: NextApiRequest,res:NextApiResponse){
                 city:city,
                 password:hashedPassword,
                 state:state,
-                fullName:fullName
+                fullName:fullName,
+                phone:phone
             }
         })
         const token = jwt.sign({ id: createdUser.userId}, JWT_SECRET, { expiresIn: "1h" });
