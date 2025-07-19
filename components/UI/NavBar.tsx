@@ -5,6 +5,7 @@ import { useDispatch, useSelector, UseSelector } from "react-redux";
 import { RootState, AppDispatch } from "@/store/store";
 import { logOut } from "@/store/slices/usersSlice";
 import { Bebas_Neue } from "next/font/google";
+import { useRouter } from "next/navigation";
 
 const bebas = Bebas_Neue({
   weight:['400'],
@@ -12,6 +13,7 @@ const bebas = Bebas_Neue({
 })
 
 const NavBar = ()=>{
+  const router = useRouter()
   const [changeNav,setChangeNav] = useState(false)
   const isLoggedIn = useSelector((state: RootState)=> state.user.isLoggedIn)
   const dispatch = useDispatch<AppDispatch>()
@@ -23,7 +25,15 @@ const NavBar = ()=>{
       setChangeNav(false)
     }
   },[isLoggedIn])
-  const handleLogOut = ()=>{
+  
+  const handleLogOut = async ()=>{
+    await fetch("/api/logOut",{
+      method:"POST",
+      headers:{
+        "Content-type" : "application/json"
+      }
+    })
+    router.push("/")
     dispatch(logOut())
   }
   return (

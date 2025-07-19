@@ -8,7 +8,7 @@ interface ButtonInterface {
 }
 const Button = ({children, onClick}: ButtonInterface)=>{
 
-  return <button className= {`${heebo.className} mt-3 rounded-sm p-2 bg-green-500 w-3/4`} onClick={onClick}>{children}</button>
+  return <button className= {`${heebo.className} mt-3 rounded-sm p-2 bg-green-500 w-3/4 lg:w-1/5`} onClick={onClick}>{children}</button>
 }
 
 

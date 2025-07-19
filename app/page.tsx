@@ -25,7 +25,7 @@ export default function Home() {
       <main className="pt-3">
         <div className="flex pl-4">
           <h1 className={`${unbounded.className} text-xl lg:text-6xl w-1/2 md:pl-8`}>TIRED OF CLEANING UP DOG POO?</h1>
-
+          <img className="w-[150px] h-[75px] pl-2 lg:w-[900px] lg:h-[150px]" src="/download"/>
         </div>
         <div className="pt-8 flex">
           <img src="/yellowArrow.png" alt="yellow right arrow" className="w-[150px] h-[75px] pl-2 lg:w-[900px] lg:h-[150px]"/>

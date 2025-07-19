@@ -26,7 +26,7 @@ const LoginPage = ()=>{
   }
 
   return(
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center ">
       <div className="flex w-full flex  items-center">
           <div className="flex w-full">
             <ButtonTab onClick={handleActiveTab} isActive={loginActive}>Log In</ButtonTab>
@@ -34,7 +34,7 @@ const LoginPage = ()=>{
           </div>
       
       </div>
-      <div className="w-3/4 flex flex-col justify-center items-center ">
+      <div className="w-3/4 flex self-center">
         {loginActive && <Login/>}
         {!loginActive && <SignUp handleUser={handleActiveTab}/>}
       </div>

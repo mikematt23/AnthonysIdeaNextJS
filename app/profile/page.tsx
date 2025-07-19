@@ -33,6 +33,7 @@ const ProfilePage = ()=>{
 
   const router = useRouter()
   useEffect(()=>{
+    console.log(changeAddress, changeContact, changePassword)
     if(!isLoggedIn){
       router.push("/login")
     }
@@ -54,13 +55,15 @@ const ProfilePage = ()=>{
   },[isLoggedIn, changed])
 
   function handleChangePassword(){
-    setChangePassword(!changePassword)
+    setChangePassword((prev)=> !prev)
+    console.log(changePassword)
   }
   async function handleContactChange(){
     setChangeContact(!changeContact)
   }
   async function handleAddressChange(){
-    setChangeAddress(!changeAddress)
+    setChangeAddress((prev)=> !prev)
+    console.log(changeAddress)
   }
   function handleChange (user:User){
     setFetchedUser(user)
@@ -68,27 +71,31 @@ const ProfilePage = ()=>{
   return(
     <>    
       {!isLoading && <div className="h-[35rem] w-full flex flex-col justify-center items-center text-center">
-        <h2 className={`${unbounded.className} text-md`}>Welcome back {fetchedUser?.fullName}</h2>
+        <h2 className={`${unbounded.className} text-xl md:text-4xl`}>Welcome back {fetchedUser?.fullName}</h2>
+        {(changePassword || changeContact || changeAddress) && <h2>Please Fill Out Form To Change Information</h2>}
         {fetchedUser?.canSchedule && <h3 className={`${unbounded.className} `}>You have {fetchedUser?.ordersLeft} for this week</h3>}
-        {!fetchedUser?.canSchedule && <div className=" m-5 ml-1 mr-1 flex flex-col items-center justify-center w-7/8">
-          <h4 className={`${unbounded.className} text-sm`}>Once Appointment has been finish you can schedule service.</h4>
-          <h4 className={`${unbounded.className} mt-2`}>Check email for more information</h4>
+        {(!fetchedUser?.canSchedule && !changeAddress && !changeContact && !changePassword) && <div className=" m-5 ml-1 mr-1 flex flex-col items-center justify-center w-7/8 ">
+          <h4 className={`${unbounded.className} text-sm md:text-2xl`}>Once Appointment has been finish you can schedule service.</h4>
+          <h4 className={`${unbounded.className} mt-2 md:text-2xl `}>Check email for more information</h4>
         </div>}
-        {(!changePassword || !changeContact || !changeAddress) && (<div className="pt-10 w-full flex flex-col justify-center items-center">
+        {(!changePassword && !changeContact && !changeAddress) && (<div className="pt-10 w-full flex flex-col justify-center items-center">
+           <p className={`${heebo.className}flex text-sm md:text-2xl`}>Your Information:</p>
            <div className="flex flex-col items-start">
-             <p className={`${heebo.className}flex text-sm`}>Address: {fetchedUser?.address} {fetchedUser?.city}, {fetchedUser?.state}</p>
-             <p className="flex text-sm">email: {fetchedUser?.email}</p>
-             <p className="flex text-sm">Number: n  {fetchedUser?.phone}</p>
+             <p className={`${heebo.className}flex text-sm md:text-xl`}>Address: {fetchedUser?.address} {fetchedUser?.city}, {fetchedUser?.state}</p>
+             <p className={`${heebo.className}flex text-sm md:text-xl`}>Email: {fetchedUser?.email}</p>
+             <p className={`${heebo.className}flex text-sm md:text-xl`}>Number: {fetchedUser?.phone}</p>
            </div>
-           <div className="flex flex-col md:flex-row pt-5 w-full items-center md:justify-evenly">
-            <Button onClick={handleAddressChange}>Change Address</Button>
-            <Button onClick={handleChangePassword}>Change Password</Button>
-            <Button onClick={handleContactChange}>Change Contact</Button>
+           <div className="flex flex-col md:flex-row pt-5 w-full items-center  md:justify-evenly">
+              <Button onClick={handleAddressChange}>Change Address</Button>
+              <Button onClick={handleChangePassword}>Change Password</Button>
+              <Button onClick={handleContactChange}>Change Contact</Button>
            </div>
         </div>)}
-        {changePassword && <ChangePassword handleChange={handleChange} handleClose={handleChangePassword}/>}
-        {changeAddress && <ChangeAddress handleChange={handleChange} handleClose={handleAddressChange}/>}
-        {changeContact && <ChangeContact handleChange={handleChange} handleClose={handleContactChange}/>}
+        <div className="pt-10 w-3/4 md:w-1/2">
+          {changePassword && <ChangePassword handleClose={handleChangePassword}/>}
+          {changeAddress && <ChangeAddress handleChange={handleChange} handleClose={handleAddressChange}/>}
+          {changeContact && <ChangeContact handleChange={handleChange} handleClose={handleContactChange}/>}
+        </div>
       </div>}
       {isLoading && <div>
         ...loading

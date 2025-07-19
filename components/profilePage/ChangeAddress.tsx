@@ -2,6 +2,7 @@
 import React, {useRef} from "react"
 import Input from "../UI/Input"
 import SubmitButton from "../UI/SubmitButton"
+import CancelButton from "../UI/CancelButton"
 import { User } from "@prisma/client"
 
 interface AddressChange {
@@ -35,22 +36,25 @@ const ChangeAddress = ({handleClose, handleChange}:AddressChange)=>{
 
   return(
     <>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="address">New Address</label>
+      <form onSubmit={handleSubmit} className="pt-4 flex flex-col items-center justify-center w-full">
+        <div className=" flex flex-col md:items-center items-start w-full">
+          <label className="w-3/4 flex items-start"  htmlFor="address"><span>New Address</span></label>
           <Input id="address" name="address" placeholder="New Address" type="text" ref={address}/>
         </div>
        
-        <div>
-          <label htmlFor="city">New Address</label>
+        <div className="pt-4 flex flex-col md:items-center items-start w-full">
+          <label className="w-3/4 flex items-start"  htmlFor="city"><span>New City</span></label>
           <Input id="city" name="city" placeholder="City" type="text" ref={city}/>
         </div>
 
-        <div>
-          <label htmlFor="state">State</label>
+        <div className="pt-4 flex flex-col md:items-center items-start w-full">
+          <label className="w-3/4 flex items-start"  htmlFor="state"><span>State</span></label>
           <Input id="state" name="state" placeholder="State" type="text" ref={state}/>
         </div>
-        <SubmitButton type="submit">Change Address</SubmitButton>
+        <div className="w-full flex flex-col md:flex-row items-center">
+           <SubmitButton type="submit">Change Address</SubmitButton>
+           <CancelButton onClick={handleClose}>Cancel</CancelButton>
+        </div>
       </form>
     </>
   )
