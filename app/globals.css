@@ -25,3 +25,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: green;
 }
+.react-datepicker__input-container {
+   border: 1px solid green;
+   border-radius: 4px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.react-datepicker__input-container input {
+  text-align: center;
+}
+
