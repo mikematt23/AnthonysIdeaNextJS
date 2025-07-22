@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 💩 Anthony's Idea — Dog Poop Pickup Subscription App
 
-First, run the development server:
+A full-stack web application that allows users to **subscribe to a weekly dog waste removal service**. Built with **Next.js**, **Prisma**, and **MySQL**, this app handles user authentication, subscription logic, and appointment scheduling — all with a clean, modern UI.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This is a personal project designed to showcase my skills in full-stack JavaScript development and practical problem-solving for real-world services.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🐶 Users can sign up and subscribe to weekly dog poop pickup services
+- 💳 Subscription logic with limits on weekly appointments
+- 📆 Appointment booking system with dynamic scheduling logic
+- 🔐 Authentication using NextAuth
+- 🧠 Prisma ORM with MySQL for data persistence
+- 💅 TailwindCSS for clean, responsive UI design
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧱 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Frontend | Backend | Database | Auth | Styling |
+|----------|---------|----------|------|---------|
+| Next.js  | Node.js | MySQL    | NextAuth | TailwindCSS |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ Setup Instructions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/mikematt23/AnthonysIdeaNextJS.git
+   cd AnthonysIdeaNextJS
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up your environment**
+   Create a `.env` file and add the following:
+
+   ```
+   DATABASE_URL="mysql://USER:PASSWORD@localhost:3306/your_db"
+   NEXTAUTH_SECRET="your_secret"
+   NEXTAUTH_URL="http://localhost:3000"
+   ```
+
+4. **Push schema to the database**
+   ```bash
+   npx prisma db push
+   ```
+
+5. **Run the app**
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## ✅ To-Do / Future Improvements
+
+- [ ] Integrate Stripe for actual payment processing
+- [ ] Admin dashboard for managing routes and pickups
+- [ ] SMS or email appointment reminders
+- [ ] Mobile-first UI improvements
+- [ ] Unit and integration testing
+
+---
+
+## 🙋‍♂️ About Me
+
+I’m Michael Matteis — a web developer focused on building real-world applications that solve real-world problems. Check out more of my work on [GitHub](https://github.com/mikematt23).
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
